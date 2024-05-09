@@ -9,69 +9,168 @@
  *
  * ========================================
 */
-#include "project.h"
+#include <project.h>
+#include "keypad.h"
+
+#include <stdio.h>
+
+volatile uint32_t score = 0;            // Variable to store score
+volatile uint8_t incrementFlag = 0;     // Variable to store the game status
 
 
-uint8 rxData;
 
-CY_ISR(isr_uart_Handler){
-    uint8 status = 0;
-    do{
-        // Checks if no UART Rx errors
-        status = UART_ReadRxStatus();
-        if ((status & UART_RX_STS_PAR_ERROR) || (status & UART_RX_STS_STOP_ERROR) || (status & UART_RX_STS_BREAK) || (status & UART_RX_STS_OVERRUN) ) {
-            // Parity, framing, break or overrun error
-            // ... process error
-            LCD_Position(1,0);
-            LCD_PrintString("UART err");
-        }
-        // Check that rx buffer is not empty and get rx data
-        if ( (status & UART_RX_STS_FIFO_NOTEMPTY) != 0){
-            rxData = UART_ReadRxData();
-            UART_PutChar(rxData);
-            LCD_Position(1,0);
-            LCD_PrintString("     ");
-            LCD_Position(1,0);
-            LCD_PutChar(rxData);
-            
-        }
-    }while ((status & UART_RX_STS_FIFO_NOTEMPTY) != 0);
+// Function to initialize peripherals
+void initPeripherals() {
+    // Initialize components
+    
+    keypadInit();
+    
+    LCD_Start();
+    LCD_ClearDisplay();
+    
+    //UART_Start();
+    //PWM_Start();
+    
 }
+
+void startTimer(){
+    MyTimer_Start(); // Démarrer le Timer
+    incrementFlag = 1; // Activer le drapeau d'incrémentation
+}
+
+// Function to send messages over UART
+void sendUARTMessage(char *message) {
+    // Send message over UART
+    UART_PutString(message);
+}
+
+
+
+
+// Function to detect obstacles using photoresistors
+void detectObstacles() {
+    // Read photoresistors to detect obstacles
+    // Perform necessary actions based on obstacle detection
+}
+
+// Function to display status and score on the LCD
+void display_dino_status(const char* status, int score) {
+    // Clear the LCD screen before updating
+    LCD_ClearDisplay();
+
+    // Display "Jump" or "Duck" at the first line (row 0)
+    LCD_Position(0, 0);
+    LCD_PrintString(status);
+
+    // Display the score on the second line (row 1)
+    LCD_Position(1, 0);
+    LCD_PrintNumber(score);
+}
+
+
+// Function to control servo for jumping
+void jump() {
+    if (incrementFlag == 0){ // Si l'incrémentation n'a pas encore commencé
+        startTimer();
+    }
+    
+    // Control servo to press the spacebar
+    //sendUARTMessage("Jump\n");
+    display_dino_status("Jump", score);
+    LED1_Write(1);
+    LED2_Write(1);
+    //PWM_WriteCompare( /* Value for servo control */ );
+}
+
+// Function to control servo for ducking
+void duck() {
+    // Control servo to press the down-arrow key
+    //sendUARTMessage("Duck\n");
+    
+    // Update LCD with score
+    display_dino_status("Duck", score);
+    LED3_Write(1);
+    LED4_Write(1);
+    //PWM_WriteCompare( /* Value for servo control */ );
+}
+
+// Function to control servo for ducking
+void restLeds() {
+    LED1_Write(0);
+    LED2_Write(0);
+    LED3_Write(0);
+    LED4_Write(0);
+}
+
+// Permet d'obtenir les entrées du clavier
+void getKeypadEntries(){
+    static char lastChar = '\0'; // caractère précédent, statique pour garder sa valeur entre les appels
+    char currentChar = keypadScan(); // scanne une seule fois par appel
+    LCD_Position(0,0); // positionne le curseur au début de l'écran LCD
+    if(keypadScan() != 'z' && currentChar != lastChar ){ // vérifie si le caractère a changé et n'est pas 'z'
+            LCD_PutChar(currentChar); // affiche le caractère
+            lastChar = currentChar; // met à jour le dernier caractère affiché
+            }
+    }
+
+
 
 int main(void)
 {
-    CyGlobalIntEnable; /* Enable global interrupts. */
-    //int32 val_adc = 0;
-    uint16_t pwm_period = 48000;
-    uint32_t val_CMP;
-    uint32_t val_adc;
+     // Enable global interrupts.
+    CyGlobalIntEnable;
     
-    // Start PWM
-   
-    PWM_Start();
-    ADC_StartConvert();
-    UART_Start(); //Start the UART
-    
-    PWM_WritePeriod(pwm_period);
-    PWM_WriteCompare(val_CMP); 
-    isr_uart_StartEx(isr_uart_Handler);
-    
+    // Initialize peripherals
+    initPeripherals();
+    uint16_t cnt = 0;
+        
+    // Main loop
     for(;;)
     {
-        /* Place your application code here. */
-        if (ADC_IsEndConversion(ADC_RETURN_STATUS)){
-            val_adc = ADC_GetResult32();
-            val_CMP = ((val_adc /(float)0xFFFF) + 1 ) * 2400; //Conversion from [0x0000,0xFFFF] to [2400,4800] (:= [1,2ms])
-            LCD_Position(0,0);
-            LCD_PrintNumber(val_CMP);
-            PWM_WriteCompare(val_CMP);
-            CyDelay(500);
+        if((0x80 & MyTimer_ReadStatusRegister())&& incrementFlag == 1){ //In case of overflow
+                if (cnt < 1000){
+                    cnt++;
+                }
+                else{
+                    score += 10;
+                    cnt = 0; //Reset counter
+                }
+        }
+        // Check for SW1 press to jump
+        if(SW1_Read() ==1) {
+            jump();
             
         }
-        // Read ADC values and light LEDs accordingly, and write PWM accordingly
         
+        // Check for SW2 press to duck
+        if(SW2_Read() == 1) {
+            duck();
+            
+        }
+        
+        // Check for SW3 press to reset score and timer
+        if(SW3_Read() == 1) {
+            score = 0;              //reset score
+            cnt = 0;                //reset time
+            incrementFlag = 0;
+            
+            MyTimer_Stop();
+        }
+        
+        
+
+        
+        // Detect obstacles
+        detectObstacles();
+        
+        // Add delay or use interrupts as necessary
+        CyDelay(100);
+        restLeds();
     }
 }
+
+
+
 
 /* [] END OF FILE */
 

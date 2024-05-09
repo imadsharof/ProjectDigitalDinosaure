@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="Design01" Path="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" Version="6.0" Type="Normal">
+  <Project Name="Design01" Path="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" Version="6.0" Type="Normal">
     <CMSIS_SVD_File>Design01.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -34,14 +34,16 @@
       <LinkerFile Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\Cm3Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="STRICT" Path="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn">
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn">
           <File BuildType="BUILD" Toolchain="">main.c</File>
+          <File BuildType="BUILD" Toolchain="">keypad.c</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
+          <File BuildType="BUILD" Toolchain="">keypad.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn\Generated_Source\PSoC5">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\Generated_Source\PSoC5">
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn">
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cymetadata.c</File>
@@ -153,52 +155,76 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\LCD_LCDPort.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_IntClock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\UART_IntClock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MyTimer.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MyTimer.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\MyTimer_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW0_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW0.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW0.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\ROW3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\COL3.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn\Export\ARM_GCC_Generic">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\Export\ARM_GCC_Generic">
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">.\Export\ARM_GCC_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn\Export\ARM_MDK_Generic">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\Export\ARM_MDK_Generic">
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn">
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">.\Export\ARM_MDK_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn\Export\ARM_IAR_Generic">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\Export\ARM_IAR_Generic">
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn">
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Export\ARM_IAR_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_952">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0p">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM4">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM7">
-        <Files Root="C:\Users\imads\Documents\PSoC Creator\ProjectDino\Design01.cydsn" />
+        <Files Root="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn" />
       </Folder>
     </Folders>
   </Project>
