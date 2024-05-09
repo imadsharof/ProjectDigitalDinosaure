@@ -54,19 +54,31 @@ void detectObstacles() {
 }
 
 // Function to display status and score on the LCD
-void display_dino_status(const char* status, int score) {
+void display_score(int score) {
     // Clear the LCD screen before updating
     LCD_ClearDisplay();
-
-    // Display "Jump" or "Duck" at the first line (row 0)
-    LCD_Position(0, 0);
-    LCD_PrintString(status);
 
     // Display the score on the second line (row 1)
     LCD_Position(1, 0);
     LCD_PrintNumber(score);
+    
+    
 }
 
+// Function to display status and score on the LCD
+void display_dino_status(const char* status) {
+    // Clear the LCD screen before updating
+    LCD_ClearDisplay();
+    
+    // Display "Jump" or "Duck" at the first line (row 0)
+    LCD_Position(0, 0);
+    LCD_PrintString(status);
+    
+    LCD_Position(1, 0);
+    LCD_PrintNumber(score);
+    
+}
+    
 
 // Function to control servo for jumping
 void jump() {
@@ -76,7 +88,7 @@ void jump() {
     
     // Control servo to press the spacebar
     //sendUARTMessage("Jump\n");
-    display_dino_status("Jump", score);
+    display_dino_status("Jump");
     LED1_Write(1);
     LED2_Write(1);
     //PWM_WriteCompare( /* Value for servo control */ );
@@ -88,7 +100,7 @@ void duck() {
     //sendUARTMessage("Duck\n");
     
     // Update LCD with score
-    display_dino_status("Duck", score);
+    display_dino_status("Duck");
     LED3_Write(1);
     LED4_Write(1);
     //PWM_WriteCompare( /* Value for servo control */ );
@@ -102,16 +114,17 @@ void restLeds() {
     LED4_Write(0);
 }
 
-// Permet d'obtenir les entrées du clavier
+
 void getKeypadEntries(){
-    static char lastChar = '\0'; // caractère précédent, statique pour garder sa valeur entre les appels
-    char currentChar = keypadScan(); // scanne une seule fois par appel
-    LCD_Position(0,0); // positionne le curseur au début de l'écran LCD
-    if(keypadScan() != 'z' && currentChar != lastChar ){ // vérifie si le caractère a changé et n'est pas 'z'
-            LCD_PutChar(currentChar); // affiche le caractère
-            lastChar = currentChar; // met à jour le dernier caractère affiché
-            }
-    }
+    
+    //press 8 to jump
+    if(keypadScan() == '8' ){
+        jump();}
+    
+    //press 5 to duck
+    else if (keypadScan() == '5' ){
+        duck();}
+}
 
 
 
@@ -133,6 +146,7 @@ int main(void)
                 }
                 else{
                     score += 10;
+                    display_score(score);
                     cnt = 0; //Reset counter
                 }
         }
@@ -157,14 +171,14 @@ int main(void)
             MyTimer_Stop();
         }
         
-        
 
         
         // Detect obstacles
         detectObstacles();
+        //getKeypadEntries();
         
         // Add delay or use interrupts as necessary
-        CyDelay(100);
+        //CyDelay(100);
         restLeds();
     }
 }
