@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu May 09 17:26:12 2024
+--	Thu May 09 21:37:56 2024
 --
 
 USE cypress.cypress.all;
@@ -24,11 +24,31 @@ SIGNAL tmpFB_0__LED3_net_0 : bit;
 SIGNAL tmpIO_0__LED3_net_0 : bit;
 TERMINAL tmpSIOVREF__LED3_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__LED3_net_0 : bit;
+SIGNAL tmpOE__audio_out_net_0 : bit;
+SIGNAL tmpFB_0__audio_out_net_0 : bit;
+TERMINAL Net_516 : bit;
+SIGNAL tmpIO_0__audio_out_net_0 : bit;
+TERMINAL tmpSIOVREF__audio_out_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__audio_out_net_0 : bit;
+SIGNAL \VDAC8_1:Net_83\ : bit;
+SIGNAL \VDAC8_1:Net_81\ : bit;
+SIGNAL \VDAC8_1:Net_82\ : bit;
+TERMINAL \VDAC8_1:Net_77\ : bit;
+SIGNAL Net_463 : bit;
 SIGNAL tmpOE__LED2_net_0 : bit;
 SIGNAL tmpFB_0__LED2_net_0 : bit;
 SIGNAL tmpIO_0__LED2_net_0 : bit;
 TERMINAL tmpSIOVREF__LED2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__LED2_net_0 : bit;
+SIGNAL Net_456 : bit;
+SIGNAL \Timer_keyboard_ISR:Net_260\ : bit;
+SIGNAL \Timer_keyboard_ISR:Net_266\ : bit;
+SIGNAL Net_458 : bit;
+SIGNAL \Timer_keyboard_ISR:Net_51\ : bit;
+SIGNAL \Timer_keyboard_ISR:Net_261\ : bit;
+SIGNAL \Timer_keyboard_ISR:Net_57\ : bit;
+SIGNAL Net_508 : bit;
+SIGNAL \Timer_keyboard_ISR:Net_102\ : bit;
 SIGNAL tmpOE__LED1_net_0 : bit;
 SIGNAL tmpFB_0__LED1_net_0 : bit;
 SIGNAL tmpIO_0__LED1_net_0 : bit;
@@ -1259,6 +1279,95 @@ LED3:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__LED4_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__LED3_net_0);
+audio_out:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"c4c577d1-fb66-421e-83be-93510f819d6f",
+		drive_mode=>"000",
+		ibuf_enabled=>"0",
+		init_dr_st=>"0",
+		input_sync=>"1",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"A",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"10",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(tmpOE__LED4_net_0),
+		y=>(zero),
+		fb=>(tmpFB_0__audio_out_net_0),
+		analog=>Net_516,
+		io=>(tmpIO_0__audio_out_net_0),
+		siovref=>(tmpSIOVREF__audio_out_net_0),
+		annotation=>(open),
+		in_clock=>zero,
+		in_clock_en=>tmpOE__LED4_net_0,
+		in_reset=>zero,
+		out_clock=>zero,
+		out_clock_en=>tmpOE__LED4_net_0,
+		out_reset=>zero,
+		interrupt=>tmpINTERRUPT_0__audio_out_net_0);
+\VDAC8_1:viDAC8\:cy_psoc3_vidac8_v1_0
+	GENERIC MAP(cy_registers=>"",
+		reg_data=>'0',
+		is_all_if_any=>'0')
+	PORT MAP(reset=>zero,
+		idir=>zero,
+		ioff=>zero,
+		data=>(zero, zero, zero, zero,
+			zero, zero, zero, zero),
+		strobe=>zero,
+		strobe_udb=>zero,
+		vout=>Net_516,
+		iout=>\VDAC8_1:Net_77\);
+\VDAC8_1:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
+	PORT MAP(noconnect=>\VDAC8_1:Net_77\);
+isr:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_463);
 LED2:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"ecf9c8f1-b10a-40c4-ae05-d036b1923237",
 		drive_mode=>"110",
@@ -1329,6 +1438,26 @@ LED2:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__LED4_net_0,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__LED2_net_0);
+\Timer_keyboard_ISR:TimerHW\:cy_psoc3_timer_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_456,
+		kill=>zero,
+		enable=>tmpOE__LED4_net_0,
+		capture=>zero,
+		timer_reset=>zero,
+		tc=>\Timer_keyboard_ISR:Net_51\,
+		compare=>\Timer_keyboard_ISR:Net_261\,
+		interrupt=>Net_463);
+timer_clock_1:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"2219ce63-9fa0-4e7b-992b-e1096936f1a0",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"1000000000",
+		is_direct=>'0',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_456,
+		dig_domain_out=>open);
 LED1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"e851a3b9-efb8-48be-bbb8-b303b216c393",
 		drive_mode=>"110",

@@ -13,10 +13,15 @@
 #include "keypad.h"
 
 #include <stdio.h>
+#include <math.h>
+#define PI 3.14
+#define N 100
 
+float signalJump[N];
+float signalDuck[N];
 volatile uint32_t score = 0;            // Variable to store score
 volatile uint8_t incrementFlag = 0;     // Variable to store the game status
-
+uint16_t cnt0 = 0;
 
 
 // Function to initialize peripherals
@@ -27,7 +32,7 @@ void initPeripherals() {
     
     LCD_Start();
     LCD_ClearDisplay();
-    
+    VDAC8_1_Start();
     //UART_Start();
     //PWM_Start();
     
@@ -45,6 +50,10 @@ void sendUARTMessage(char *message) {
 }
 
 
+void sound(int value){
+    
+    VDAC8_1_SetValue(value);
+}
 
 
 // Function to detect obstacles using photoresistors
@@ -89,10 +98,17 @@ void jump() {
     // Control servo to press the spacebar
     //sendUARTMessage("Jump\n");
     display_dino_status("Jump");
+    for (int j=0; j<N; j++){
+        sound(128 + 128*signalJump[j]);
+    }
+    
+    
     LED1_Write(1);
     LED2_Write(1);
     //PWM_WriteCompare( /* Value for servo control */ );
 }
+
+
 
 // Function to control servo for ducking
 void duck() {
@@ -101,6 +117,10 @@ void duck() {
     
     // Update LCD with score
     display_dino_status("Duck");
+    for (int j=0; j<N; j++){
+        sound(128 + 128*signalDuck[j]);
+    }
+    
     LED3_Write(1);
     LED4_Write(1);
     //PWM_WriteCompare( /* Value for servo control */ );
@@ -125,7 +145,18 @@ void getKeypadEntries(){
     else if (keypadScan() == '5' ){
         duck();}
 }
-
+CY_ISR(myISR){
+    if (cnt0 < 1000){
+        cnt0++;
+    }
+    else{
+        getKeypadEntries();
+        cnt0 = 0; //Reset counter
+    }
+    
+    Timer_keyboard_ISR_ReadStatusRegister();
+    
+}
 
 
 int main(void)
@@ -135,7 +166,15 @@ int main(void)
     
     // Initialize peripherals
     initPeripherals();
+    isr_StartEx(myISR);
+    Timer_keyboard_ISR_Start();
+     
     uint16_t cnt = 0;
+    
+    for (int j=0; j<N; j++){
+        signalJump[j] = sin(2*PI*j/N);
+        signalDuck[j] = sin(100*PI*j/N);
+    }
         
     // Main loop
     for(;;)
@@ -145,6 +184,7 @@ int main(void)
                     cnt++;
                 }
                 else{
+                    //un coeficient à ajouter encore #1.5
                     score += 10;
                     display_score(score);
                     cnt = 0; //Reset counter
@@ -157,7 +197,7 @@ int main(void)
         }
         
         // Check for SW2 press to duck
-        if(SW2_Read() == 1) {
+        if(SW2_Read() == 1 && incrementFlag == 1) {
             duck();
             
         }
@@ -165,17 +205,15 @@ int main(void)
         // Check for SW3 press to reset score and timer
         if(SW3_Read() == 1) {
             score = 0;              //reset score
-            cnt = 0;                //reset time
+            cnt = 0;                
             incrementFlag = 0;
-            
+            display_score(score);
             MyTimer_Stop();
         }
         
-
-        
         // Detect obstacles
         detectObstacles();
-        //getKeypadEntries();
+        
         
         // Add delay or use interrupts as necessary
         //CyDelay(100);

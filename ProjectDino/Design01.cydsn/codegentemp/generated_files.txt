@@ -24,9 +24,22 @@
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED3_aliases.h" value="HEADER;;;;;LED3" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED3.c" value="SOURCE_C;CortexM3;;;;LED3" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED3.h" value="HEADER;;;;;LED3" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\audio_out_aliases.h" value="HEADER;;;;;audio_out" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\audio_out.c" value="SOURCE_C;CortexM3;;;;audio_out" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\audio_out.h" value="HEADER;;;;;audio_out" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\VDAC8_1.c" value="SOURCE_C;CortexM3;;;;VDAC8_1" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\VDAC8_1.h" value="HEADER;;;;;VDAC8_1" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\VDAC8_1_PM.c" value="SOURCE_C;CortexM3;;;;VDAC8_1" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\isr.c" value="SOURCE_C;CortexM3;;;;isr" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\isr.h" value="HEADER;;;;;isr" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED2_aliases.h" value="HEADER;;;;;LED2" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED2.c" value="SOURCE_C;CortexM3;;;;LED2" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED2.h" value="HEADER;;;;;LED2" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\Timer_keyboard_ISR.c" value="SOURCE_C;CortexM3;;;;Timer_keyboard_ISR" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\Timer_keyboard_ISR.h" value="HEADER;;;;;Timer_keyboard_ISR" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\Timer_keyboard_ISR_PM.c" value="SOURCE_C;CortexM3;;;;Timer_keyboard_ISR" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\timer_clock_1.c" value="SOURCE_C;CortexM3;;;;timer_clock_1" />
+  <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\timer_clock_1.h" value="HEADER;;;;;timer_clock_1" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED1_aliases.h" value="HEADER;;;;;LED1" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED1.c" value="SOURCE_C;CortexM3;;;;LED1" />
   <file name="C:\Users\moham\PSoC Creator\Workspace04\ProjectDigitalDinosaure\ProjectDino\Design01.cydsn\codegentemp\LED1.h" value="HEADER;;;;;LED1" />
